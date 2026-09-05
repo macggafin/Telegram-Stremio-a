@@ -1086,29 +1086,6 @@ async def get_streams(
             streams = filtered
 
     if not streams:
-        return {"streams": []}
-
-    ascending = config.get("quality_sort") == "asc"
-    if is_combined:
-        streams.sort(key=lambda s: s.get("episode_start", 0))
-        streams.sort(key=lambda s: s.get("name_key", ""))
-        streams.sort(key=lambda s: get_resolution_priority(s.get("name", "")), reverse=not ascending)
-    else:
-        streams.sort(
-            key=lambda s: (get_resolution_priority(s.get("name", "")), s.get("size_bytes", 0)),
-            reverse=not ascending
-        )
-    name_count: dict = {}
-    for s in streams:
-        name_count[s["name"]] = name_count.get(s["name"], 0) + 1
-
-    seen: dict = {}
-    for s in streams:
-        if name_count[s["name"]] > 1:
-            seen[s["name"]] = seen.get(s["name"], 0) + 1
-            s["name"] = f"{s['name']} ({seen[s['name']]})"
-    return {"streams": streams}
-
 #----- Configure/install landing page rendered as HTML for a token
 @router.get("/{token}/configure")
 async def configure_addon(token: str, request: Request):

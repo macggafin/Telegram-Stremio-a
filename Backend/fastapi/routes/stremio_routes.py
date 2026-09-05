@@ -1086,7 +1086,7 @@ async def get_streams(
             streams = filtered
 
     if not streams:
-        return {"streams": [__x7()]}
+        return {"streams": []}
 
     ascending = config.get("quality_sort") == "asc"
     if is_combined:
@@ -1107,7 +1107,6 @@ async def get_streams(
         if name_count[s["name"]] > 1:
             seen[s["name"]] = seen.get(s["name"], 0) + 1
             s["name"] = f"{s['name']} ({seen[s['name']]})"
-    streams.insert(0, __x7())
     return {"streams": streams}
 
 #----- Configure/install landing page rendered as HTML for a token
